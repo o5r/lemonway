@@ -1,0 +1,35 @@
+{
+  "name": "lemonway",
+  "version": "0.0.1",
+  "description": "Lemonway non-official SDK",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -b "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lendix/lemonway.git"
+  },
+  "keywords": [
+    "Lemonway",
+    "payment",
+    "SDK",
+    "promises",
+    "ES5"
+  ],
+  "author": "Lendix",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lendix/lemonway/issues"
+  },
+  "homepage": "https://github.com/Lendix/lemonway#readme",
+  "dependencies": {
+    "bluebird": "3.0.6",
+    "joi": "6.10.1",
+    "lodash": "3.10.1",
+    "soap": "0.11.0"
+  },
+  "devDependencies": {
+    "mocha": "2.3.4"
+  }
+}
