@@ -27,9 +27,12 @@
     "bluebird": "3.0.6",
     "joi": "6.10.1",
     "lodash": "3.10.1",
+    "moment": "^2.10.6",
     "soap": "0.11.0"
   },
   "devDependencies": {
+    "chai": "3.4.1",
+    "chance": "0.8.0",
     "mocha": "2.3.4"
   }
 }
