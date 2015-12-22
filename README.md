@@ -4,7 +4,7 @@
 ## Usage
 =======
 ```js
-var Lemonway = require('lemonway);
+var Lemonway = require('lemonway');
 
 var lemonway = new Lemonway(login, pass, JSONEndpoint);
 
@@ -56,3 +56,10 @@ lemonway.Wallet.register({
 `lemonway.Wallet.moneyIn3DInit(id, opts) -> Promise<transaction>`
 `lemonway.Wallet.registerCard(id, opts) -> Promise<transaction>`
 `lemonway.Wallet.unregisterCard(id, opts) -> Promise<transaction>`
+`lemonway.getWizypayAds(opts) -> Promise<[[wizypayOffer], [wizypayAd]]>`
+
+## Models
+=======
+### Wallet
+### Transaction
+### WizypayAd

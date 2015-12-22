@@ -30,9 +30,8 @@ describe('money in', function () {
         cardDate: '10/2016',
         autoCommission: Lemonway.constants.AUTO_COMMISSION.ENABLED
       });
-    }).then(function (hPay) {
-      console.log(hPay);
-      expect(hPay.com + hPay.cred).to.equal(10.00);
+    }).then(function (transaction) {
+      expect(transaction.amountCredited + transaction.fee).to.equal(10.00);
       return done();
     })
     .catch(done);

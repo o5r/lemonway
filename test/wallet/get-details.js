@@ -26,7 +26,6 @@ describe('get details', function () {
         walletIp: chance.ip()
       });
     }).then(function (detailed) {
-      console.log(detailed);
       expect(detailed.id).to.equal(id);
       return done();
     }).catch(done);

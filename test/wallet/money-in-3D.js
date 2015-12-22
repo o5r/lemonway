@@ -23,7 +23,7 @@ describe('money in 3D', function () {
     }).then(function (wallet) {
       return lemonway.Wallet.moneyIn3DInit(wallet.id, {
         walletIp: chance.ip(),
-        amountTot: 10.00,
+        amountTot: '10.00',
         cardType: Lemonway.constants.CARD_TYPE.CB,
         cardNumber: '5017670000001800',
         cardCode: '666',
@@ -31,9 +31,8 @@ describe('money in 3D', function () {
         returnUrl: 'https://google.fr',
         autoCommission: Lemonway.constants.AUTO_COMMISSION.ENABLED
       });
-    }).then(function (hPay) {
-      console.log(hPay);
-      expect(hPay.com + hPay.cred).to.equal(10.00);
+    }).spread(function (acs, transaction) {
+      expect(transaction.amountCredited + transaction.fee).to.equal(10.00);
       return done();
     })
     .catch(done);
