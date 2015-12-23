@@ -48,6 +48,18 @@ lemonway.Wallet.register({
 `Lemonway.constants.WALLET_STATUS.KYC_2`
 `Lemonway.constants.WALLET_STATUS.CLOSED`
 
+`lemonway.fastPay(opts) -> Promise<wallet>`
+Fastpay
+
+arg|type|required|description
+---|----|--------|-----------
+opts | object | true |
+opts.walletIp | string | true | Client ip |
+opts.walletUa | string | false | Client user agent |
+opts.cardNumber | string | true | 
+opts.cardCode | string | true | 
+opts.cardDate | string | true | 
+opts.amount | number | true | In €, precision 2
 
 `lemonway.Wallet.register(opts) -> Promise<wallet>`
 Register a new Wallet
@@ -112,6 +124,36 @@ opts.birthCity | string | false |
 opts.birthCountry | string | false | 
 
 `lemonway.Wallet.get(id, opts) -> Promise<wallet>`
+Get a wallet 
+
+arg|type|required|description
+---|----|--------|-----------
+id | string | true | wallet id
+opts | object | true |
+opts.walletIp | string | true | Client ip |
+opts.walletUa | string | false | Client user agent |
+
+`lemonway.Payment.get(id, opts) -> Promise<wallet>`
+Get a wallet 
+
+arg|type|required|description
+---|----|--------|-----------
+id | string | true | wallet id
+opts | object | true |
+opts.walletIp | string | true | Client ip |
+opts.walletUa | string | false | Client user agent |
+
+`lemonway.MoneyIn.get(id, opts) -> Promise<wallet>`
+Get a wallet 
+
+arg|type|required|description
+---|----|--------|-----------
+id | string | true | wallet id
+opts | object | true |
+opts.walletIp | string | true | Client ip |
+opts.walletUa | string | false | Client user agent |
+
+`lemonway.MoneyOut.get(id, opts) -> Promise<wallet>`
 Get a wallet 
 
 arg|type|required|description
@@ -300,7 +342,6 @@ opts.walletUa | string | false | Client user agent
   * documents -> `[Document]|undefined`
   * ibans -> `[IBAN]|undefined`
   * sddMandates -> `[SDDMandate]|undefined`
-  * update -> (`walletData`) -> `Promise<Wallet>`  
   * update -> (`walletData`) -> `Promise<Wallet>`  
   * updateStatus -> (`walletData`) -> `Promise<Wallet>`  
   * close -> (`clientInfo`) -> `Promise<Wallet>`  
