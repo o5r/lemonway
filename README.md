@@ -171,10 +171,39 @@ opts.autoCommission | bool | false | default to false
 opts.delayedDays | number | false | 
 opts.wkToken | string | false | 
 
+`lemonway.Wallet.registerCard(wallet, opts) -> Promise<card>`
+Register and link a card to a wallet
 
-`lemonway.Wallet.registerCard(id, opts) -> Promise<transaction>`
-`lemonway.Wallet.unregisterCard(id, opts) -> Promise<transaction>`
+arg|type|required|description
+---|----|--------|-----------
+wallet | Wallet or string | true | Can be a wallet instance or just a wallet id
+opts | object | true |
+opts.walletIp | string | true | Client ip 
+opts.walletUa | string | false | Client user agent 
+opts.cardNumber | string | true | 
+opts.cardCode | string | true | 
+opts.cardDate | string | true | 
+
+`lemonway.Wallet.unregisterCard(wallet, card, opts) -> Promise<card>`
+Unregister and link a card to a wallet
+
+arg|type|required|description
+---|----|--------|-----------
+wallet | Wallet or string | true | Can be a wallet instance or just a wallet id
+card | Card or string | true | Can be a card instance or just a card id
+opts | object | true |
+opts.walletIp | string | true | Client ip 
+opts.walletUa | string | false | Client user agent 
+
 `lemonway.getWizypayAds(opts) -> Promise<[[wizypayOffer], [wizypayAd]]>`
+Get wizypay ads
+
+arg|type|required|description
+---|----|--------|-----------
+opts | object | true |
+opts.walletIp | string | true | Client ip 
+opts.walletUa | string | false | Client user agent 
+
 
 ## Models
 =======
