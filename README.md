@@ -51,6 +51,7 @@ lemonway.Wallet.register({
 
 `lemonway.Wallet.register(opts) -> Promise<wallet>`
 Register a new Wallet
+
 arg|type|required|description
 ---|----|--------|-----------
 opts | object | true |
@@ -80,10 +81,76 @@ opts.birthCountry | string | false |
 opts.payerOrBenificiary | bool | false | 
 opts.isOneTimeCustomer | bool | false | 
 
-`lemonway.Wallet.update(id, opts) -> Promise<wallet>`
+`lemonway.Wallet.update(wallet, opts) -> Promise<wallet>`
+Update a wallet
+
+arg|type|required|description
+---|----|--------|-----------
+wallet | Wallet or string | true | Can be a wallet instance or just a wallet id
+opts | object | true |
+opts.walletIp | string | true | Client ip |
+opts.walletUa | string | false | Client user agent |
+opts.clientMail | string | true | client email address |
+opts.clientFirstName | string | true | client first name |
+opts.clientLastName | string | true | client last name |
+opts.clientTitle | string | false | client title (can be M, F, J or U) |
+opts.street | string | false | 
+opts.postCode | string | false | 
+opts.city | string | false | client city of residence |
+opts.country | string | false | client country of residence |
+opts.phoneNumber | string | false | 
+opts.mobileNumber | string | false | 
+opts.birthDate | date | false | 
+opts.isCompany | bool | false | 
+opts.companyName | string | false | 
+opts.companyWebsite | string | false | 
+opts.companyDescription | string | false | 
+opts.companyIdentificationNumber | string | false | 
+opts.isDebtor | string | false | 
+opts.nationality | string | false | 
+opts.birthCity | string | false | 
+opts.birthCountry | string | false | 
+
 `lemonway.Wallet.get(id, opts) -> Promise<wallet>`
+Get a wallet 
+
+arg|type|required|description
+---|----|--------|-----------
+id | string | true | wallet id
+opts | object | true |
+opts.walletIp | string | true | Client ip |
+opts.walletUa | string | false | Client user agent |
+
 `lemonway.Wallet.list(opts) -> Promise<wallet>`
-`lemonway.Wallet.moneyIn(id, opts) -> Promise<transaction>`
+List wallets
+
+arg|type|required|description
+---|----|--------|-----------
+opts | object | true |
+opts.walletIp | string | true | Client ip |
+opts.walletUa | string | false | Client user agent |
+
+
+`lemonway.Wallet.moneyIn(wallet, opts) -> Promise<transaction>`
+Credit a wallet via credit card
+
+arg|type|required|description
+---|----|--------|-----------
+wallet | Wallet or string | true | Can be a wallet instance or just a wallet id
+opts | object | true |
+opts.walletIp | string | true | Client ip 
+opts.walletUa | string | false | Client user agent 
+opts.cardNumber | string | true | 
+opts.cardCrypto | string | true | 
+opts.cardDate | string | true | 
+opts.amountTot | number | true | amount to credit (decimal format)
+opts.amountCom | number | false | 
+opts.comment | string | false | 
+opts.autoCommission | bool | false | default to false
+opts.isPreAuth | bool | false | 
+opts.delayedDays | number | false | 
+opts.wkToken | string | false | 
+
 `lemonway.Wallet.moneyIn3DInit(id, opts) -> Promise<transaction>`
 `lemonway.Wallet.registerCard(id, opts) -> Promise<transaction>`
 `lemonway.Wallet.unregisterCard(id, opts) -> Promise<transaction>`
