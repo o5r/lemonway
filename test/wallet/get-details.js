@@ -21,8 +21,7 @@ describe('get details', function () {
       clientLastName: chance.last(),
       birthdate: new Date()
     }).then(function (wallet) {
-      return lemonway.Wallet.getDetails({
-        id: wallet.id,
+      return lemonway.Wallet.getDetails(wallet, {
         walletIp: chance.ip()
       });
     }).then(function (detailed) {
@@ -44,7 +43,6 @@ describe('get details', function () {
     }).then(function (wallet) {
       return wallet.getDetails({ walletIp: chance.ip() });
     }).then(function (detailed) {
-      console.log(detailed);
       expect(detailed.id).to.equal(id);
       return done();
     })

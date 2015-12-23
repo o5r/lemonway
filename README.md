@@ -48,7 +48,38 @@ lemonway.Wallet.register({
 `Lemonway.constants.WALLET_STATUS.KYC_2`
 `Lemonway.constants.WALLET_STATUS.CLOSED`
 
+
 `lemonway.Wallet.register(opts) -> Promise<wallet>`
+Register a new Wallet
+| arg  | type   | required | description |
+|------|--------|----------|-------------|
+| opts | object | true     |             |
+| opts.walletIp | string | true | Client ip |
+| opts.walletUa | string | false | Client user agent |
+| opts.wallet | string | true | external id (must be unique) |
+| opts.clientMail | string | true | client email address |
+| opts.clientFirstName | string | true | client first name |
+| opts.clientLastName | string | true | client last name |
+| opts.clientTitle | string | false | client title (can be M, F, J or U) |
+| opts.street | string | false | |
+| opts.postCode | string | false | |
+| opts.city | string | false | client city of residence |
+| opts.country | string | false | client country of residence |
+| opts.phoneNumber | string | false | |
+| opts.mobileNumber | string | false | |
+| opts.birthDate | date | false | |
+| opts.isCompany | bool | false | |
+| opts.companyName | string | false | |
+| opts.companyWebsite | string | false | |
+| opts.companyDescription | string | false | |
+| opts.companyIdentificationNumber | string | false | |
+| opts.isDebtor | string | false | |
+| opts.nationality | string | false | |
+| opts.birthCity | string | false | |
+| opts.birthCountry | string | false | |
+| opts.payerOrBenificiary | bool | false | |
+| opts.isOneTimeCustomer | bool | false | |
+
 `lemonway.Wallet.update(id, opts) -> Promise<wallet>`
 `lemonway.Wallet.get(id, opts) -> Promise<wallet>`
 `lemonway.Wallet.list(opts) -> Promise<wallet>`

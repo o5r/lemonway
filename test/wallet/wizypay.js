@@ -14,8 +14,7 @@ describe('wizypay', function () {
     lemonway.getWizypayAds({
       walletIp: chance.ip()
     }).spread(function (offers, ads) {
-      console.log(offers);
-      console.log(ads);
+
     }).catch(done);
   });
 });

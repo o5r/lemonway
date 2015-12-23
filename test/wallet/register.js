@@ -19,7 +19,7 @@ describe('register', function () {
       clientMail: chance.email(),
       clientFirstName: chance.first(),
       clientLastName: chance.last(),
-      birthdate: new Date()
+      birthDate: new Date()
     }).then(function (wallet) {
       expect(wallet.id).to.equal(id);
       return done();

@@ -14,7 +14,7 @@ describe('update', function () {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
     var id = chance.word();
     lemonway.Wallet.register({
-      //walletIp: chance.ip(),
+      walletIp: chance.ip(),
       wallet: id,
       clientMail: chance.email(),
       clientFirstName: chance.first(),

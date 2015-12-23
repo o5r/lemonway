@@ -33,7 +33,6 @@ describe('register', function () {
         autoCommission: Lemonway.constants.AUTO_COMMISSION.ENABLED,
         registerCard: Lemonway.constants.REGISTER_CARD.ENABLED
       }).then(function (res) {
-        console.log(res);
         return done();
       })
     }).catch(done);

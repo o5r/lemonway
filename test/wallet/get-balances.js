@@ -1,5 +1,6 @@
 'use strict';
 
+var Promise = require('bluebird');
 var Chance = require('chance');
 
 var Lemonway = require('../../');
@@ -18,12 +19,32 @@ describe('get balances', function () {
       return wallet.reload({
         walletIp: chance.ip()
       });
-    }).map(function (wallet) {
-      if (wallet.status !== Lemonway.constants.WALLET_STATUS.CLOSED && wallet.bal === 0.00) {
-        return wallet.close({
-          walletIp: chance.ip()
-        });
-      }
+    }).then(function (wallets) {
+      return Promise.all([
+        wallets,
+        Promise.reduce(wallets, function (acc, wallet) {
+          return !acc || acc.balance < wallet.balance ? wallet : acc;
+        })
+      ]);
+    }).spread(function (wallets, greatest) {
+      console.log('greatest', greatest);
+      return Promise.map(wallets, function (wallet) {
+        if (wallet.balance > 0 && wallet.id !== greatest.id) {
+          console.log('from', wallet.id, 'to', greatest.id);
+          return lemonway.Wallet.sendPayment(wallet, greatest, {
+            walletIp: chance.ip(),
+            amount: wallet.balance
+          }).return(wallet);
+        }
+        return wallet;
+      }).map(function (wallet) {
+        if (wallet.status !== Lemonway.constants.WALLET_STATUS.CLOSED) {
+          console.log(wallet);
+          return wallet.close({
+            walletIp: chance.ip()
+          });
+        }
+      })
     }).then(function () {
       return done();
     }).catch(done);
