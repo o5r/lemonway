@@ -25,10 +25,10 @@
   "homepage": "https://github.com/Lendix/lemonway#readme",
   "dependencies": {
     "bluebird": "3.0.6",
-    "credit-card-type": "^4.0.1",
+    "credit-card-type": "4.0.1",
     "joi": "6.10.1",
     "lodash": "3.10.1",
-    "moment": "^2.10.6",
+    "moment": "2.10.6",
     "soap": "0.11.0"
   },
   "devDependencies": {
