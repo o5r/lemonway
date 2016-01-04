@@ -3,6 +3,8 @@
 
 ## Usage
 =======
+
+### Create a new wallet and credit it by card
 ```js
 var Lemonway = require('lemonway');
 
@@ -27,6 +29,31 @@ lemonway.Wallet.register({
   });
 }).then(function (transaction) {
   ...
+});
+```
+
+### Get a wallet and credit it by card using 3D Secure
+```js
+var Lemonway = require('lemonway');
+
+var lemonway = new Lemonway(login, pass, JSONEndpoint);
+
+lemonway.Wallet.get(walletId, {
+  walletIp: client.ip,
+})
+  .then(function (wallet) {
+    return wallet.moneyIn3DInit({
+      walletIp: client.ip,
+      amountTot: amount,
+      cardType: Lemonway.constants.CARD_TYPE.CB,
+      cardNumber: client.cardNumber,
+      cardCrypto: client.cardCrypto,
+      cardDate: client.cardDate,
+      autoCommission: Lemonway.constants.AUTO_COMMISSION.ENABLED,
+      returnUrl: 'https://your-service/your-return-path'
+    });
+}).spread(function (acs, transaction) {
+  // redirect the client to acs.actionUrl
 });
 ```
 
@@ -133,8 +160,18 @@ opts | object | true |
 opts.walletIp | string | true | Client ip |
 opts.walletUa | string | false | Client user agent |
 
-`lemonway.Payment.get(id, opts) -> Promise<wallet>`
-Get a wallet 
+`lemonway.Payment.get(id, opts) -> Promise<payment>`
+Get a payment 
+
+arg|type|required|description
+---|----|--------|-----------
+id | string | true | payment id
+opts | object | true |
+opts.walletIp | string | true | Client ip |
+opts.walletUa | string | false | Client user agent |
+
+`lemonway.MoneyIn.get(id, opts) -> Promise<moneyIn>`
+Get a money in 
 
 arg|type|required|description
 ---|----|--------|-----------
@@ -143,18 +180,8 @@ opts | object | true |
 opts.walletIp | string | true | Client ip |
 opts.walletUa | string | false | Client user agent |
 
-`lemonway.MoneyIn.get(id, opts) -> Promise<wallet>`
-Get a wallet 
-
-arg|type|required|description
----|----|--------|-----------
-id | string | true | wallet id
-opts | object | true |
-opts.walletIp | string | true | Client ip |
-opts.walletUa | string | false | Client user agent |
-
-`lemonway.MoneyOut.get(id, opts) -> Promise<wallet>`
-Get a wallet 
+`lemonway.MoneyOut.get(id, opts) -> Promise<moneyOut>`
+Get a money out 
 
 arg|type|required|description
 ---|----|--------|-----------
