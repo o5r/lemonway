@@ -10,13 +10,12 @@ var Lemonway = require('lemonway');
 
 var lemonway = new Lemonway(login, pass, JSONEndpoint);
 
-lemonway.Wallet.register({
-  walletIp: client.ip,
-  wallet: id,
-  clientMail: client.mail,
-  clientFirstName: client.firstName,
-  clientLastName: client.lastName,
-  birthdate: client.birthDate
+lemonway.setClient(req).Wallet.create({
+  id: id,
+  email: client.mail,
+  firstName: client.firstName,
+  lastName: client.lastName,
+  birthDate: client.birthDate
 }).then(function (wallet) {
   return wallet.moneyIn({
     walletIp: client.ip,
