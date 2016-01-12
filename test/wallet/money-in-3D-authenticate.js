@@ -35,7 +35,7 @@ describe('money in 3D', function () {
         open(objs.acs.getRedirectUrl());
         console.log('Go to', objs.acs.getRedirectUrl(),'then, press enter to resume');
         return process.stdin.on('data', function () {
-          return resolve(objs.transaction.moneyIn3DConfirm());
+          return resolve(objs.transaction.moneyIn3DAuthenticate());
         });
       });
     }).then(function (transaction) {

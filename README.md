@@ -10,7 +10,7 @@ var Lemonway = require('lemonway');
 
 var lemonway = new Lemonway(login, pass, JSONEndpoint);
 
-lemonway.setClient(req).Wallet.create({
+lemonway.clone().setUserIp(req).Wallet.create({
   id: id,
   email: client.mail,
   firstName: client.firstName,

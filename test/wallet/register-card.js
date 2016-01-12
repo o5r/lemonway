@@ -7,23 +7,26 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('register', function () {
+describe('money in web', function () {
   this.timeout(2000000);
 
-  it('update wallet status', function (done) {
-    var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
-    const id = chance.word();
+  it('credit a wallet', function (done) {
+    var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT, process.env.WK_URL);
     lemonway.clone().setUserIp(chance.ip()).Wallet.create({
-      id: id,
+      id: chance.word(),
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
-    }).updateWalletStatus({
-      status: 6
-    }).then(function (wallet) {
-      expect(wallet.id).to.equal(id);
+    }).registerCard({
+      cardNumber: '5017670000001800',
+      cardCrypto: '666',
+      cardDate: '09/2016'
+    }).then(function (card) {
+      console.log(card);
       return done();
     }).catch(done);
+
   });
+
 });

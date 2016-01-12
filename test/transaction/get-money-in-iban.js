@@ -1,6 +1,5 @@
 'use strict';
 
-var expect = require('chai').expect;
 var Chance = require('chance');
 
 var Lemonway = require('../../');
@@ -12,15 +11,10 @@ describe('register', function () {
 
   it('create a wallet', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
-    const id = chance.word();
-    lemonway.clone().setUserIp(chance.ip()).Wallet.create({
-      id: id,
-      email: chance.email(),
-      firstName: chance.first(),
-      lastName: chance.last(),
-      birthDate: new Date()
-    }).then(function (wallet) {
-      expect(wallet.id).to.equal(id);
+    lemonway.clone().setUserIp(chance.ip()).Transaction.GetMoneyInIBANDetails({
+      from: 0
+    }).then(function (transactions) {
+      console.log(transactions);
       return done();
     }).catch(done);
   });

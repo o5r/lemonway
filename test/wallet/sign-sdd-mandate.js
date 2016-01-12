@@ -10,7 +10,7 @@ var chance = new Chance();
 describe('register', function () {
   this.timeout(2000000);
 
-  it('update wallet status', function (done) {
+  it('create a wallet', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
     const id = chance.word();
     lemonway.clone().setUserIp(chance.ip()).Wallet.create({
@@ -19,10 +19,21 @@ describe('register', function () {
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
-    }).updateWalletStatus({
-      status: 6
     }).then(function (wallet) {
-      expect(wallet.id).to.equal(id);
+      return wallet.updateWalletStatus({
+        status: 6
+      }).registerSddMandate({
+        holder: chance.first() + ' ' + chance.last(),
+        bic: 'ABCDEFGHIJK',
+        iban: 'FR1420041010050500013M02606',
+        isRecurring: false
+      }).signDocumentInit(wallet, {
+        mobileNumber: '33770482948',
+        returnUrl: chance.url(),
+        errorUrl: chance.url()
+      });
+    }).then(function (mandate) {
+      console.log(mandate);
       return done();
     }).catch(done);
   });
