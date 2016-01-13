@@ -6,7 +6,7 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('register', function () {
+describe('fastpay', function () {
   this.timeout(2000000);
 
   it('use fastpay', function (done) {

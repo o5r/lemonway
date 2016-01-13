@@ -6,7 +6,7 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('register', function () {
+describe('register sdd mandate', function () {
   this.timeout(2000000);
 
   it('sign a mandate', function (done) {
@@ -18,7 +18,7 @@ describe('register', function () {
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
-    }).registerSddMandate({
+    }).registerSDDMandate({
       holder: chance.first() + ' ' + chance.last(),
       bic: 'ABCDEFGHIJK',
       iban: 'FR1420041010050500013M02606',

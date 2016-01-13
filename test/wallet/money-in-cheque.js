@@ -7,7 +7,7 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('money in with card validate', function () {
+describe('money in cheque', function () {
   this.timeout(2000000);
 
   it('credit a wallet', function (done) {
@@ -19,16 +19,9 @@ describe('money in with card validate', function () {
       lastName: chance.last(),
       birthDate: new Date()
     }).then(function (wallet) {
-      return wallet.registerCard({
-        cardNumber: '5017670000001800',
-        cardCrypto: '666',
-        cardDate: '09/2016'
-      }).then(function (card) {
-        return wallet.moneyInWithCard(card, {
-          amount: 10.0,
-          autoCommission: true,
-          isPreAuth: true
-        }).moneyInValidate();
+      return wallet.moneyInChequeInit({
+        amount: 10.0,
+        autoCommission: true
       });
     }).then(function (transaction) {
       console.log(transaction);

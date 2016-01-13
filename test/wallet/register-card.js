@@ -7,10 +7,10 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('money in web', function () {
+describe('register card', function () {
   this.timeout(2000000);
 
-  it('credit a wallet', function (done) {
+  it('attach a card to a wallet', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT, process.env.WK_URL);
     lemonway.clone().setUserIp(chance.ip()).Wallet.create({
       id: chance.word(),

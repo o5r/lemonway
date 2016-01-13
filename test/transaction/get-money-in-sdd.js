@@ -11,8 +11,8 @@ describe('register', function () {
 
   it('create a wallet', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
-    lemonway.clone().setUserIp(chance.ip()).Transaction.getMoneyInIBANDetails({
-      after: 0
+    lemonway.clone().setUserIp(chance.ip()).Transaction.getMoneyInSDD({
+      after: new Date('2011-04-11')
     }).then(function (transactions) {
       console.log(transactions);
       return done();

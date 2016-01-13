@@ -9,7 +9,7 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('money in 3D', function () {
+describe('money in 3D auth', function () {
   this.timeout(2000000);
 
   it('credit a wallet', function (done) {

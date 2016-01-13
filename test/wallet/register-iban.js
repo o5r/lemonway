@@ -7,30 +7,27 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('unregister sdd mandate', function () {
+describe('register iban', function () {
   this.timeout(2000000);
 
-  it('unregister a sdd mandate', function (done) {
+  it('register an iban', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
-    const id = chance.word();
     lemonway.clone().setUserIp(chance.ip()).Wallet.create({
-      id: id,
+      id: chance.word(),
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
     }).then(function (wallet) {
-      return wallet.registerSDDMandate({
-        holder: chance.first() + ' ' + chance.last(),
-        bic: 'ABCDEFGHIJK',
-        iban: 'FR1420041010050500013M02606',
-        isRecurring: false
-      }).then(function (mandate) {
-        return wallet.unregisterSDDMandate(mandate);
-      })
-    }).then(function (mandate) {
-      console.log(mandate);
+      return wallet.registerIBAN({
+        holder: chance.first() + " " + chance.last(),
+        iban: 'FR1420041010050500013M02606'
+      });
+    }).then(function (iban) {
+      console.log(iban);
       return done();
     }).catch(done);
+
   });
+
 });
