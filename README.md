@@ -375,7 +375,7 @@ scheduleDate | date | false |
 privateData | string | false | additional data  
 
 `lemonway.Transaction.get(id, opts) -> Promise<transaction>`
-Get a transaction by 
+Get a transaction by id
 
 arg|type|required|description
 ---|----|--------|-----------
@@ -383,6 +383,16 @@ id | string | true | payment id
 opts | object | true |
 opts.walletIp | string | true | Client ip |
 opts.walletUa | string | false | Client user agent |
+
+`lemonway.Transaction.list(opts) -> Promise<[transaction]>`
+List input transaction
+
+arg|type|required|description
+---|----|--------|-----------
+opts | object | false |
+opts.before | date | false |
+opts.after | date | false |
+
 
 `lemonway.MoneyIn.get(id, opts) -> Promise<moneyIn>`
 Get a money in 
