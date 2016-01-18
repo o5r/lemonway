@@ -23,8 +23,8 @@ describe('get money in', function () {
   it('list transactions', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
     lemonway.clone().setUserIp(chance.ip()).Transaction.list({
-      after: moment().subtract(1, 'day').toDate(),
-      before: moment().toDate()
+      //after: moment().subtract(1, 'day').toDate(),
+      //before: moment().toDate()
     })
       .then(function (transactions) {
         console.log(transactions);
