@@ -15,7 +15,7 @@ describe('get money in', function () {
         after: 0
       })
       .then(function (transactions) {
-        console.log(transactions);
+        //console.log(transactions);
         return done();
       }).catch(done);
   });
@@ -27,7 +27,7 @@ describe('get money in', function () {
       //before: moment().toDate()
     })
       .then(function (transactions) {
-        console.log(transactions);
+        //console.log(transactions);
         return done();
       }).catch(done);
   });
