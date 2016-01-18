@@ -50,6 +50,18 @@ lemonway.clone().setUserIp(req).Wallet.get(walletId)
 });
 ```
 
+### List input transactions
+```js
+var Lemonway = require('lemonway');
+
+var lemonway = new Lemonway(login, pass, JSONEndpoint);
+
+lemonway.clone().setUserIp(req).Transaction.list({})
+  .then(function (transactions) {
+    ...
+  });
+```
+
 ## API
 =======
 
