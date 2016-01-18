@@ -18,13 +18,11 @@ lemonway.clone().setUserIp(req).Wallet.create({
   birthDate: client.birthDate
 }).then(function (wallet) {
   return wallet.moneyIn({
-    walletIp: client.ip,
-    amountTot: amount,
-    cardType: Lemonway.constants.CARD_TYPE.CB,
+    amount: amount,
     cardNumber: client.cardNumber,
     cardCrypto: client.cardCrypto,
     cardDate: client.cardDate,
-    autoCommission: Lemonway.constants.AUTO_COMMISSION.ENABLED
+    autoCommission: true
   });
 }).then(function (transaction) {
   ...
@@ -37,18 +35,14 @@ var Lemonway = require('lemonway');
 
 var lemonway = new Lemonway(login, pass, JSONEndpoint);
 
-lemonway.Wallet.get(walletId, {
-  walletIp: client.ip,
-})
+lemonway.clone().setUserIp(req).Wallet.get(walletId)
   .then(function (wallet) {
     return wallet.moneyIn3DInit({
-      walletIp: client.ip,
-      amountTot: amount,
-      cardType: Lemonway.constants.CARD_TYPE.CB,
+      amount: amount,
       cardNumber: client.cardNumber,
       cardCrypto: client.cardCrypto,
       cardDate: client.cardDate,
-      autoCommission: Lemonway.constants.AUTO_COMMISSION.ENABLED,
+      autoCommission: true,
       returnUrl: 'https://your-service/your-return-path'
     });
 }).spread(function (acs, transaction) {
