@@ -62,6 +62,23 @@ lemonway.clone().setUserIp(req).Transaction.list({})
   });
 ```
 
+### Upload a KYC File
+```js
+var Lemonway = require('lemonway');
+
+var lemonway = new Lemonway(login, pass, JSONEndpoint, WebkitURL);
+
+lemonway.clone().setUserIp(req).Wallet.get(walletId)
+  .then(function (wallet) {
+    return wallet.uploadFile({
+      fileName: 'RIB.png',
+      type: 'RIB',
+      filePath: './test/wallet/RIB.png'
+    });
+  });
+
+```
+
 ## API
 =======
 
