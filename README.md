@@ -423,26 +423,6 @@ opts | object | true |
 opts.walletIp | string | true | Client ip |
 opts.walletUa | string | false | Client user agent |
 
-`lemonway.Wallet.moneyIn3DInit(id, opts) -> Promise<[acs, transaction]>`
-Credit a wallet via credit card with 3D Secure
-
-arg|type|required|description
----|----|--------|-----------
-wallet | Wallet or string | true | Can be a wallet instance or just a wallet id
-opts | object | true |
-opts.walletIp | string | true | Client ip 
-opts.walletUa | string | false | Client user agent 
-opts.cardNumber | string | true | 
-opts.cardCrypto | string | true | 
-opts.cardDate | string | true | 
-opts.amountTot | number | true | amount to credit (decimal format)
-opts.returnUrl | string | true | 3D Secure return URL
-opts.amountCom | number | false | 
-opts.comment | string | false | 
-opts.autoCommission | bool | false | default to false
-opts.delayedDays | number | false | 
-opts.wkToken | string | false | 
-
 `lemonway.Wallet.registerCard(wallet, opts) -> Promise<card>`
 Register and link a card to a wallet
 
