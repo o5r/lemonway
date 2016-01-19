@@ -18,12 +18,14 @@ describe('money in', function () {
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
-    }).moneyIn({
-      amount: 10.00,
-      cardNumber: '5017670000006700',
-      cardCrypto: '666',
-      cardDate: '10/2016',
-      autoCommission: true
+    }).then(function (wallet) {
+      return wallet.moneyIn({
+        amount: 10.00,
+        cardNumber: '5017670000006700',
+        cardCrypto: '666',
+        cardDate: '10/2016',
+        autoCommission: true
+      })
     }).then(function (transaction) {
       return done();
     }).catch(done);

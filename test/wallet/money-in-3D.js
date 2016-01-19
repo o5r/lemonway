@@ -20,14 +20,16 @@ describe('money in 3D', function () {
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
-    }).moneyIn3DInit({
-      amount: 10.00,
-      autoCommission: true,
-      cardNumber: '5017670000001800',
-      cardCrypto: '666',
-      cardDate: '10/2016',
-      token: chance.word(),
-      returnUrl: chance.url()
+    }).then(function (wallet) {
+      wallet.moneyIn3DInit({
+        amount: 10.00,
+        autoCommission: true,
+        cardNumber: '5017670000001800',
+        cardCrypto: '666',
+        cardDate: '10/2016',
+        token: chance.word(),
+        returnUrl: chance.url()
+      });
     }).then(function (objs) {
       process.stdin.resume();
       process.stdin.setEncoding('utf8');

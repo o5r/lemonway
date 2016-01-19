@@ -18,13 +18,15 @@ describe('money in web', function () {
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
-    }).moneyInWebInit({
-      amount: 10.00,
-      autoCommission: true,
-      token: chance.word(),
-      returnUrl: chance.url(),
-      errorUrl: chance.url(),
-      cancelUrl: chance.url()
+    }).then(function (wallet) {
+      return wallet.moneyInWebInit({
+        amount: 10.00,
+        autoCommission: true,
+        token: chance.word(),
+        returnUrl: chance.url(),
+        errorUrl: chance.url(),
+        cancelUrl: chance.url()
+      });
     }).then(function (moneyInWeb) {
       return done();
     }).catch(done);

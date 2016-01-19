@@ -18,10 +18,12 @@ describe('register card', function () {
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
-    }).registerCard({
-      cardNumber: '5017670000001800',
-      cardCrypto: '666',
-      cardDate: '09/2016'
+    }).then(function (wallet) {
+      return wallet.registerCard({
+        cardNumber: '5017670000001800',
+        cardCrypto: '666',
+        cardDate: '09/2016'
+      });
     }).then(function (card) {
       console.log(card);
       return done();

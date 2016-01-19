@@ -18,11 +18,13 @@ describe('register sdd mandate', function () {
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
-    }).registerSDDMandate({
-      holder: chance.first() + ' ' + chance.last(),
-      bic: 'ABCDEFGHIJK',
-      iban: 'FR1420041010050500013M02606',
-      isRecurring: false
+    }).then(function (wallet) {
+      return wallet.registerSDDMandate({
+        holder: chance.first() + ' ' + chance.last(),
+        bic: 'ABCDEFGHIJK',
+        iban: 'FR1420041010050500013M02606',
+        isRecurring: false
+      });
     }).then(function (mandate) {
       console.log(mandate);
       return done();

@@ -23,11 +23,13 @@ describe('money in sdd', function () {
     }).then(function (wallet) {
       return wallet.updateWalletStatus({
         status: 'KYC_2'
-      }).registerSDDMandate({
-        holder: chance.first() + ' ' + chance.last(),
-        bic: 'ABCDEFGHIJK',
-        iban: 'FR1420041010050500013M02606',
-        isRecurring: false
+      }).then(function (wallet) {
+        return wallet.registerSDDMandate({
+          holder: chance.first() + ' ' + chance.last(),
+          bic: 'ABCDEFGHIJK',
+          iban: 'FR1420041010050500013M02606',
+          isRecurring: false
+        });
       }).then(function (mandate) {
         return mandate.signDocumentInit(wallet, {
           mobileNumber: '33770482948',
