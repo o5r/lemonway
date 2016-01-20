@@ -32,7 +32,7 @@ describe('money in sdd', function () {
         });
       }).then(function (mandate) {
         return mandate.signDocumentInit(chance.ip(), wallet, {
-          mobileNumber: '33770482948',
+          mobileNumber: process.env.PHONE,
           returnUrl: chance.url(),
           errorUrl: chance.url()
         }).then(function (signMandate) {
