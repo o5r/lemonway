@@ -10,14 +10,14 @@ var Lemonway = require('lemonway');
 
 var lemonway = new Lemonway(login, pass, JSONEndpoint);
 
-lemonway.clone().setUserIp(req).Wallet.create({
+lemonway.Wallet.create(ip, {
   id: id,
   email: client.mail,
   firstName: client.firstName,
   lastName: client.lastName,
   birthDate: client.birthDate
 }).then(function (wallet) {
-  return wallet.moneyIn({
+  return wallet.moneyIn(ip, {
     amount: amount,
     cardNumber: client.cardNumber,
     cardCrypto: client.cardCrypto,
@@ -35,9 +35,9 @@ var Lemonway = require('lemonway');
 
 var lemonway = new Lemonway(login, pass, JSONEndpoint);
 
-lemonway.clone().setUserIp(req).Wallet.get(walletId)
+lemonway.Wallet.get(req, walletId)
   .then(function (wallet) {
-    return wallet.moneyIn3DInit({
+    return wallet.moneyIn3DInit(req, {
       amount: amount,
       cardNumber: client.cardNumber,
       cardCrypto: client.cardCrypto,
@@ -56,7 +56,7 @@ var Lemonway = require('lemonway');
 
 var lemonway = new Lemonway(login, pass, JSONEndpoint);
 
-lemonway.clone().setUserIp(req).Transaction.list({})
+lemonway.Transaction.list(req)
   .then(function (transactions) {
     ...
   });
@@ -68,9 +68,9 @@ var Lemonway = require('lemonway');
 
 var lemonway = new Lemonway(login, pass, JSONEndpoint, WebkitURL);
 
-lemonway.clone().setUserIp(req).Wallet.get(walletId)
+lemonway.Wallet.get(req, walletId)
   .then(function (wallet) {
-    return wallet.uploadFile({
+    return wallet.uploadFile(req, {
       fileName: 'RIB.png',
       type: 'RIB',
       filePath: './test/wallet/RIB.png'
@@ -84,16 +84,7 @@ lemonway.clone().setUserIp(req).Wallet.get(walletId)
 
 `Lemonway(login, pass, JSONEndpoint, webKitUrl) -> lemonway`
 
-`lemonway.clone() -> lemonway`
-Clone the current lemonway instance, so you can for example set the client ip even if you lemonway instance is a singleton 
-
-`lemonway.setUserIp(req || ip) -> lemonway`
-Set the client ip for the next request, this is mandatory in order to use the lemonway API
-
-`lemonway.setUserAgent(req || ip) -> lemonway`
-Set the client user agent for the next request, this is NOT mandatory
-
-`lemonway.Wallet.create(opts) -> Promise<wallet>`
+`lemonway.Wallet.create(ip, opts) -> Promise<wallet>`
 Create a new Wallet and return a promise that resolve to the new wallet
 
 arg|type|required|description
@@ -123,7 +114,7 @@ opts.birthCountry | string | false |
 opts.payerOrBenificiary | bool | false | 
 opts.isOneTimeCustomer | bool | false | 
 
-`lemonway.Wallet.update(wallet, opts) -> Promise<wallet>`
+`lemonway.Wallet.update(ip, wallet, opts) -> Promise<wallet>`
 Update a wallet and return a promise to the updated wallet
 
 arg|type|required|description
@@ -151,21 +142,21 @@ opts.nationality | string | false |
 opts.birthCity | string | false | 
 opts.birthCountry | string | false | 
 
-`lemonway.Wallet.get(id) -> Promise<wallet>`
+`lemonway.Wallet.get(ip, id) -> Promise<wallet>`
 Get a wallet by id
 
 arg|type|required|description
 ---|----|--------|-----------
 id | string | true | wallet id
 
-`lemonway.Wallet.list(opts) -> Promise<wallet>`
+`lemonway.Wallet.list(ip, opts) -> Promise<wallet>`
 List wallet where amount changed after 'from' 
 
 arg|type|required|description
 ---|----|--------|-----------
 opts.from | date | false | default to 0
 
-`lemonway.Wallet.uploadFile(wallet, opts) -> Promise<document>`
+`lemonway.Wallet.uploadFile(ip, wallet, opts) -> Promise<document>`
 Upload a KYC file to Lemonway
 
 arg|type|required|description
@@ -176,14 +167,14 @@ opts.type | string | true | the file type, can be ID from identity documents, PR
 opts.file | string or buffer | true | a string of a base64 file content or a node buffer, optional if filePath is set
 opts.filePath | string | true | the path to the file to upload, optional if file is set
 
-`lemonway.Wallet.listKyc(opts) -> Promise<[object]>`
+`lemonway.Wallet.listKyc(ip, opts) -> Promise<[object]>`
 List kyc
 
 arg|type|required|description
 ---|----|--------|-----------
 opts.from | date | false | date to list from, default to 0
 
-`lemonway.Wallet.getTransHistory(wallet, opts) -> Promise<[transaction]>`
+`lemonway.Wallet.getTransHistory(ip, wallet, opts) -> Promise<[transaction]>`
 List the wallet transaction 
 
 arg|type|required|description
@@ -191,7 +182,7 @@ arg|type|required|description
 opts.from | date | false | date to list from, default to 0
 opts.to | date | false | date to list until, default to now
 
-`lemonway.Wallet.moneyIn(wallet, opts) -> Promise<transaction>`
+`lemonway.Wallet.moneyIn(ip, wallet, opts) -> Promise<transaction>`
 Credit a wallet via credit card WITHOUT 3D secure
 
 arg|type|required|description
@@ -207,7 +198,7 @@ opts.isPreAuth | bool | false |
 opts.delayedDays | int | false |  
 opts.token | string | false | an optional id token  
 
-`lemonway.Wallet.moneyIn3DInit(wallet, opts) -> Promise<{acs, transaction}>`
+`lemonway.Wallet.moneyIn3DInit(ip, wallet, opts) -> Promise<{acs, transaction}>`
 Credit a wallet via credit card with 3D secure
 
 arg|type|required|description
@@ -222,7 +213,7 @@ opts.autoCommission | bool | true |
 opts.token | string | false | an optional id token  
 opts.returnUrl | string | true | return URL after the Atos 3D secure process  
 
-`lemonway.Transaction.moneyIn3DConfirm(transaction, opts) -> Promise<{acs, transaction}>`
+`lemonway.Transaction.moneyIn3DConfirm(ip, transaction, opts) -> Promise<{acs, transaction}>`
 Confirm a 3D secure payment process
 
 arg|type|required|description
@@ -231,7 +222,7 @@ transaction | id or transaction | true | a transaction or a transaction id
 opts.isPreAuth | bool | false |  
 opts.delayedDays | int | false |  
 
-`lemonway.Transaction.moneyIn3DAuthenticate(transaction) -> Promise<moneyIn>`
+`lemonway.Transaction.moneyIn3DAuthenticate(ip, transaction) -> Promise<moneyIn>`
 Confirm that a transaction was done with 3D secure enabled
 
 arg|type|required|description
@@ -240,7 +231,7 @@ wallet | id or wallet | true | a wallet or a wallet id
 opts.isPreAuth | bool | false |  
 opts.delayedDays | int | false |  
 
-`lemonway.Wallet.registerCard(wallet, opts) -> Promise<card>`
+`lemonway.Wallet.registerCard(ip, wallet, opts) -> Promise<card>`
 Attach a card to a wallet
 
 arg|type|required|description
@@ -250,7 +241,7 @@ opts.cardNumber | string | true |
 opts.cardCrypto | string | true | 
 opts.cardExpiration | string | true | 
 
-`lemonway.Wallet.unregisterCard(wallet, card) -> Promise<card>`
+`lemonway.Wallet.unregisterCard(ip, wallet, card) -> Promise<card>`
 Detach a card from wallet
 
 arg|type|required|description
@@ -258,7 +249,7 @@ arg|type|required|description
 wallet | id or wallet | true | a wallet or a wallet id
 card | id or card | true | a card or a card id
 
-`lemonway.Wallet.moneyInWithCardId(wallet, card, opts) -> Promise<transaction>`
+`lemonway.Wallet.moneyInWithCardId(ip, wallet, card, opts) -> Promise<transaction>`
 Credit a wallet via a registered card
 
 arg|type|required|description
@@ -273,14 +264,14 @@ opts.isPreAuth | bool | true |
 opts.delayedDays | int | false | 
 opts.token | string | false | 
 
-`lemonway.Transaction.moneyInValidate(transaction) -> Promise<transaction>`
+`lemonway.Transaction.moneyInValidate(ip, transaction) -> Promise<transaction>`
 Validate a pre-auth transaction
 
 arg|type|required|description
 ---|----|--------|-----------
 transaction | id or transaction | true | a transaction or a transaction id
 
-`lemonway.Wallet.registerSDDMandate(wallet, opts) -> Promise<sddMandate>`
+`lemonway.Wallet.registerSDDMandate(ip, wallet, opts) -> Promise<sddMandate>`
 Register a debit mandate
 
 arg|type|required|description
@@ -296,7 +287,7 @@ opts.city | string | false | mandatory to sign a mandate
 opts.country | string | false | mandatory to sign a mandate
 opts.defaultLanguage | string | false | mandate language, can be 'fr', 'es' or 'de', default to 'fr'
 
-`lemonway.Wallet.unregisterSDDMandate(wallet, mandate) -> Promise<sddMandate>`
+`lemonway.Wallet.unregisterSDDMandate(ip, wallet, mandate) -> Promise<sddMandate>`
 Unregister a mandate
 
 arg|type|required|description
@@ -304,7 +295,7 @@ arg|type|required|description
 wallet | id or wallet | true | a wallet or a wallet id
 mandate | id or mandate | true | a mandate or a mandate id
 
-`lemonway.Wallet.signDocumentInit(wallet, mandate, opts) -> Promise<{token, redirectUrl}>`
+`lemonway.Wallet.signDocumentInit(ip, wallet, mandate, opts) -> Promise<{token, redirectUrl}>`
 Init a document signature, return a redirectUrl to which you should redirect you client 
 
 arg|type|required|description
@@ -315,7 +306,7 @@ mobileNumber | string | true | the client mobile number, is mandatory since the 
 returnUrl | string | true | the client will be redirected to this URL in case of success
 errorUrl | string | true | the client will be redirected to this URL in case of failure
 
-`lemonway.Wallet.moneyInSddInit(wallet, mandate, opts) -> Promise<transaction>`
+`lemonway.Wallet.moneyInSddInit(ip, wallet, mandate, opts) -> Promise<transaction>`
 Credit a wallet via a previously signed sdd mandate 
 
 arg|type|required|description
@@ -327,7 +318,7 @@ commission | float | false |
 autoCommission | bool | true | 
 collectionDate | date | false | default to now
 
-`lemonway.Wallet.moneyInChequeInit(wallet, opts) -> Promise<transaction>`
+`lemonway.Wallet.moneyInChequeInit(ip, wallet, opts) -> Promise<transaction>`
 Pre-register a cheque, you still have to send the document to Lemonway
 
 arg|type|required|description
@@ -337,7 +328,7 @@ amount | float | true |
 commission | float | false | 
 autoCommission | bool | true | 
 
-`lemonway.Wallet.registerIBAN(wallet, opts) -> Promise<iban>`
+`lemonway.Wallet.registerIBAN(ip, wallet, opts) -> Promise<iban>`
 Attach an iban to a wallet
 
 arg|type|required|description
@@ -350,7 +341,7 @@ dom1 | string | false |
 dom2 | string | false | 
 comment | string | false | 
 
-`lemonway.Wallet.moneyOut(wallet, iban, opts) -> Promise<transaction>`
+`lemonway.Wallet.moneyOut(ip, wallet, iban, opts) -> Promise<transaction>`
 Attach an iban to a wallet
 
 arg|type|required|description
@@ -362,7 +353,7 @@ commission | float | false |
 autoCommission | bool | true | 
 message | string | false | 
 
-`lemonway.Wallet.sendPayment(fromWallet, toWallet, opts) -> Promise<transaction>`
+`lemonway.Wallet.sendPayment(ip, fromWallet, toWallet, opts) -> Promise<transaction>`
 P2P payment, send a payment from a wallet to another wallet
 
 arg|type|required|description
@@ -374,7 +365,7 @@ message | string | false |
 scheduleDate | date | false | 
 privateData | string | false | additional data  
 
-`lemonway.Transaction.get(id, opts) -> Promise<transaction>`
+`lemonway.Transaction.get(ip, id, opts) -> Promise<transaction>`
 Get a transaction by id
 
 arg|type|required|description
@@ -384,7 +375,7 @@ opts | object | true |
 opts.walletIp | string | true | Client ip |
 opts.walletUa | string | false | Client user agent |
 
-`lemonway.Transaction.list(opts) -> Promise<[transaction]>`
+`lemonway.Transaction.list(ip, opts) -> Promise<[transaction]>`
 List input transaction
 
 arg|type|required|description
@@ -394,7 +385,7 @@ opts.before | date | false |
 opts.after | date | false |
 
 
-`lemonway.MoneyIn.get(id, opts) -> Promise<moneyIn>`
+`lemonway.MoneyIn.get(ip, id, opts) -> Promise<moneyIn>`
 Get a money in 
 
 arg|type|required|description
@@ -404,7 +395,7 @@ opts | object | true |
 opts.walletIp | string | true | Client ip |
 opts.walletUa | string | false | Client user agent |
 
-`lemonway.MoneyOut.get(id, opts) -> Promise<moneyOut>`
+`lemonway.MoneyOut.get(ip, id, opts) -> Promise<moneyOut>`
 Get a money out 
 
 arg|type|required|description
@@ -414,7 +405,7 @@ opts | object | true |
 opts.walletIp | string | true | Client ip |
 opts.walletUa | string | false | Client user agent |
 
-`lemonway.Wallet.list(opts) -> Promise<[wallet, ...]>`
+`lemonway.Wallet.list(ip, opts) -> Promise<[wallet, ...]>`
 List wallets
 
 arg|type|required|description
@@ -423,7 +414,7 @@ opts | object | true |
 opts.walletIp | string | true | Client ip |
 opts.walletUa | string | false | Client user agent |
 
-`lemonway.Wallet.registerCard(wallet, opts) -> Promise<card>`
+`lemonway.Wallet.registerCard(ip, wallet, opts) -> Promise<card>`
 Register and link a card to a wallet
 
 arg|type|required|description
@@ -436,7 +427,7 @@ opts.cardNumber | string | true |
 opts.cardCode | string | true | 
 opts.cardDate | string | true | 
 
-`lemonway.Wallet.unregisterCard(wallet, card, opts) -> Promise<card>`
+`lemonway.Wallet.unregisterCard(ip, wallet, card, opts) -> Promise<card>`
 Unregister and link a card to a wallet
 
 arg|type|required|description
@@ -447,7 +438,7 @@ opts | object | true |
 opts.walletIp | string | true | Client ip 
 opts.walletUa | string | false | Client user agent 
 
-`lemonway.getWizypayAds(opts) -> Promise<[[wizypayOffer], [wizypayAd]]>`
+`lemonway.getWizypayAds(ip, opts) -> Promise<[[wizypayOffer], [wizypayAd]]>`
 Get wizypay ads
 
 arg|type|required|description
@@ -559,4 +550,3 @@ opts.walletUa | string | false | Client user agent
   * expirationDate -> `string|undefined`
   * cvx -> `string|undefined`
   
-
