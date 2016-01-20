@@ -13,25 +13,25 @@ describe('money in sdd', function () {
 
   it('credit a wallet', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT, process.env.WK_URL);
-    const id = chance.word();
-    lemonway.clone().setUserIp(chance.ip()).Wallet.create({
+    var id = chance.word({ syllables: 5 });
+    lemonway.Wallet.create(chance.ip(), {
       id: id,
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
     }).then(function (wallet) {
-      return wallet.updateWalletStatus({
+      return wallet.updateWalletStatus(chance.ip(), {
         status: 'KYC_2'
       }).then(function (wallet) {
-        return wallet.registerSDDMandate({
+        return wallet.registerSDDMandate(chance.ip(), {
           holder: chance.first() + ' ' + chance.last(),
           bic: 'ABCDEFGHIJK',
           iban: 'FR1420041010050500013M02606',
           isRecurring: false
         });
       }).then(function (mandate) {
-        return mandate.signDocumentInit(wallet, {
+        return mandate.signDocumentInit(chance.ip(), wallet, {
           mobileNumber: '33770482948',
           returnUrl: chance.url(),
           errorUrl: chance.url()
@@ -40,7 +40,7 @@ describe('money in sdd', function () {
           console.log('Go to', signMandate.redirectUrl,'then, press enter to resume');
           return new Promise(function (resolve) {
             return process.stdin.on('data', function () {
-              return resolve(wallet.moneyInSDDInit(mandate, {
+              return resolve(wallet.moneyInSDDInit(chance.ip(), mandate, {
                 amount: 100.0,
                 autoCommission: true
               }));
@@ -49,7 +49,6 @@ describe('money in sdd', function () {
         });
       });
     }).then(function (transaction) {
-      console.log(transaction);
       return done();
     }).catch(done);
   });

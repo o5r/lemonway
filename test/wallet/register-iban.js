@@ -12,19 +12,18 @@ describe('register iban', function () {
 
   it('register an iban', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
-    lemonway.clone().setUserIp(chance.ip()).Wallet.create({
-      id: chance.word(),
+    lemonway.Wallet.create(chance.ip(), {
+      id: chance.word({ syllables: 5 }),
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
     }).then(function (wallet) {
-      return wallet.registerIBAN({
+      return wallet.registerIBAN(chance.ip(), {
         holder: chance.first() + " " + chance.last(),
         iban: 'FR1420041010050500013M02606'
       });
     }).then(function (iban) {
-      console.log(iban);
       return done();
     }).catch(done);
 

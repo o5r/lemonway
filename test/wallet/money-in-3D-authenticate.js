@@ -14,20 +14,20 @@ describe('money in 3D auth', function () {
 
   it('credit a wallet', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT, process.env.WK_URL);
-    lemonway.clone().setUserIp(chance.ip()).Wallet.create({
-      id: chance.word(),
+    lemonway.Wallet.create(chance.ip(), {
+      id: chance.word({ syllables: 5 }),
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
     }).then(function (wallet) {
-      return wallet.moneyIn3DInit({
+      return wallet.moneyIn3DInit(chance.ip(), {
         amount: 10.00,
         autoCommission: true,
         cardNumber: '5017670000001800',
         cardCrypto: '666',
         cardDate: '10/2016',
-        token: chance.word(),
+        token: chance.word({ syllables: 5 }),
         returnUrl: chance.url()
       })
     }).then(function (objs) {
@@ -37,11 +37,10 @@ describe('money in 3D auth', function () {
         open(objs.acs.getRedirectUrl());
         console.log('Go to', objs.acs.getRedirectUrl(),'then, press enter to resume');
         return process.stdin.on('data', function () {
-          return resolve(objs.transaction.moneyIn3DAuthenticate());
+          return resolve(objs.transaction.moneyIn3DAuthenticate(chance.ip()));
         });
       });
     }).then(function (transaction) {
-      console.log(transaction);
       return done();
     }).catch(done);
 

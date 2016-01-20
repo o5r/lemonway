@@ -12,14 +12,14 @@ describe('money in', function () {
 
   it('credit a wallet', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
-    lemonway.clone().setUserIp(chance.ip()).Wallet.create({
-      id: chance.word(),
+    lemonway.Wallet.create(chance.ip(), {
+      id: chance.word({ syllables: 5 }),
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
     }).then(function (wallet) {
-      return wallet.moneyIn({
+      return wallet.moneyIn(chance.ip(), {
         amount: 10.00,
         cardNumber: '5017670000006700',
         cardCrypto: '666',

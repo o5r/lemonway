@@ -2,5 +2,5 @@
 
 describe('Lemonway SDK', function () {
   require('./transaction');
-  //require('./wallet');
+  require('./wallet');
 });

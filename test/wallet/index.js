@@ -2,7 +2,6 @@
 
 describe('wallet', function () {
   require('./upload-file');
-  require('./send-payment');
   require('./money-out');
   require('./register-iban');
   require('./money-in-cheque');

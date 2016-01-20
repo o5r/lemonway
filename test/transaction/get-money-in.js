@@ -11,23 +11,18 @@ describe('get money in', function () {
 
   it('list transactions', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
-    lemonway.clone().setUserIp(chance.ip()).Transaction.getMoneyInTransDetails({
+    lemonway.Transaction.getMoneyInTransDetails(chance.ip(), {
         after: 0
       })
       .then(function (transactions) {
-        //console.log(transactions);
         return done();
       }).catch(done);
   });
 
   it('list transactions', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
-    lemonway.clone().setUserIp(chance.ip()).Transaction.list({
-      //after: moment().subtract(1, 'day').toDate(),
-      //before: moment().toDate()
-    })
+    lemonway.Transaction.list(chance.ip())
       .then(function (transactions) {
-        //console.log(transactions);
         return done();
       }).catch(done);
   });
