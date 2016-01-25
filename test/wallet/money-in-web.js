@@ -23,11 +23,14 @@ describe('money in web', function () {
         amount: 10.00,
         autoCommission: true,
         token: chance.word({ syllables: 5 }),
+        registerCard: true,
         returnUrl: chance.url(),
         errorUrl: chance.url(),
         cancelUrl: chance.url()
       });
     }).then(function (moneyInWeb) {
+      console.log(moneyInWeb);
+      console.log(moneyInWeb.getWebKitRedirectUrl());
       return done();
     }).catch(done);
 

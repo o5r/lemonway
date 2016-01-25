@@ -28,7 +28,7 @@ describe('money in 3D', function () {
         cardCrypto: '666',
         cardDate: '10/2016',
         token: chance.word({ syllables: 5 }),
-        returnUrl: chance.url()
+        returnUrl: 'http://localhost:9999' //chance.url()
       });
     }).then(function (objs) {
       process.stdin.resume();

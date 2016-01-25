@@ -1,6 +1,8 @@
 'use strict';
 
 describe('wallet', function () {
+  require('./money-in-web');
+  require('./money-in-3D');
   require('./upload-file');
   require('./money-out');
   require('./register-iban');
@@ -15,8 +17,6 @@ describe('wallet', function () {
   require('./unregister-card');
   require('./register-card');
   require('./money-in-3D-authenticate');
-  require('./money-in-3D');
-  require('./money-in-web');
   require('./register');
   require('./money-in');
 });
