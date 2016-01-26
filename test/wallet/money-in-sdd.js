@@ -2,6 +2,7 @@
 
 var open = require('open');
 var expect = require('chai').expect;
+var Promise = require('bluebird');
 var Chance = require('chance');
 
 var Lemonway = require('../../');
