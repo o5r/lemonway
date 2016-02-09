@@ -83,6 +83,15 @@ lemonway.Wallet.get(req, walletId)
 =======
 
 `Lemonway(login, pass, JSONEndpoint, webKitUrl) -> lemonway`
+Create a new lemonway instance
+
+arg|type|required|description
+---|----|--------|-----------
+login | string | true | your lemonway login |
+pass | string | true | your lemonway password |
+JSONEndpoint | string | true | your lemonway JSON endpoint |
+webKitUrl | string | true | your lemonway webkit Url |
+
 
 `lemonway.Wallet.create(ip, opts) -> Promise<wallet>`
 Create a new Wallet and return a promise that resolve to the new wallet
