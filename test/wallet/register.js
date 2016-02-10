@@ -19,9 +19,14 @@ describe('register', function () {
       firstName: chance.first(),
       lastName: chance.last(),
       birthDate: new Date()
-    }).then(function (wallet) {
-      expect(wallet.id).to.equal(id);
-      return done();
-    }).catch(done);
+    })
+      .then(function (wallet) {
+        expect(wallet.id).to.equal(id);
+        return lemonway.Wallet.get(chance.ip(), wallet.id);
+      })
+      .then(function (wallet) {
+        console.log(wallet);
+        return done();
+      }).catch(done);
   });
 });
