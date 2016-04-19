@@ -1,8 +1,6 @@
 # Lemonway SDK
-=======
 
 ## Usage
-=======
 
 ### Create a new wallet and credit it by card
 ```js
@@ -465,9 +463,7 @@ opts.walletUa | string | false | Client user agent
 
 
 ## Models
-## Models
-## Models
-=======
+
 ### Wallet
   * id -> `string`
   * lemonWayId -> `string`
