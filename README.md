@@ -200,10 +200,10 @@ opts.cardCrypto | string | true |
 opts.cardExpiration | string | true |
 opts.amount | float | true | The amount to be credited
 opts.commission | float | false | The commission amount, default to 0
-opts.autoCommission | bool | true |  
-opts.isPreAuth | bool | false |  
-opts.delayedDays | int | false |  
-opts.token | string | false | an optional id token  
+opts.autoCommission | bool | true |
+opts.isPreAuth | bool | false |
+opts.delayedDays | int | false |
+opts.token | string | false | an optional id token
 
 ### `lemonway.Wallet.moneyIn3DInit(ip, wallet, opts) -> Promise<{acs, transaction}>`
 Credit a wallet via credit card with 3D secure
@@ -216,9 +216,9 @@ opts.cardCrypto | string | true |
 opts.cardExpiration | string | true |
 opts.amount | float | true | The amount to be credited
 opts.commission | float | false | The commission amount, default to 0
-opts.autoCommission | bool | true |  
-opts.token | string | false | an optional id token  
-opts.returnUrl | string | true | return URL after the Atos 3D secure process  
+opts.autoCommission | bool | true |
+opts.token | string | false | an optional id token
+opts.returnUrl | string | true | return URL after the Atos 3D secure process
 
 ### `lemonway.Transaction.moneyIn3DConfirm(ip, transaction, opts) -> Promise<{acs, transaction}>`
 Confirm a 3D secure payment process
@@ -226,8 +226,8 @@ Confirm a 3D secure payment process
 arg|type|required|description
 ---|----|--------|-----------
 transaction | id or transaction | true | a transaction or a transaction id
-opts.isPreAuth | bool | false |  
-opts.delayedDays | int | false |  
+opts.isPreAuth | bool | false |
+opts.delayedDays | int | false |
 
 ### `lemonway.Transaction.moneyIn3DAuthenticate(ip, transaction) -> Promise<moneyIn>`
 Confirm that a transaction was done with 3D secure enabled
@@ -235,8 +235,8 @@ Confirm that a transaction was done with 3D secure enabled
 arg|type|required|description
 ---|----|--------|-----------
 wallet | id or wallet | true | a wallet or a wallet id
-opts.isPreAuth | bool | false |  
-opts.delayedDays | int | false |  
+opts.isPreAuth | bool | false |
+opts.delayedDays | int | false |
 
 ### `lemonway.Wallet.registerCard(ip, wallet, opts) -> Promise<card>`
 Attach a card to a wallet
@@ -292,7 +292,7 @@ opts.street | string | false | mandatory to sign a mandate
 opts.postCode | string | false | mandatory to sign a mandate
 opts.city | string | false | mandatory to sign a mandate
 opts.country | string | false | mandatory to sign a mandate
-opts.defaultLanguage | string | false | mandate language, can be 'fr', 'es' or 'de', default to 'fr'
+opts.mandateLanguage | string | false | mandate language, can be 'fr', 'es' or 'de', default to 'fr'
 
 ### `lemonway.Wallet.unregisterSDDMandate(ip, wallet, mandate) -> Promise<sddMandate>`
 Unregister a mandate
@@ -320,7 +320,7 @@ arg|type|required|description
 ---|----|--------|-----------
 wallet | id or wallet | true | a wallet or a wallet id
 mandate | id or mandate | true | a mandate or a mandate id
-amount | float | true |  
+amount | float | true |
 commission | float | false |
 autoCommission | bool | true |
 collectionDate | date | false | default to now
@@ -331,7 +331,7 @@ Pre-register a cheque, you still have to send the document to Lemonway
 arg|type|required|description
 ---|----|--------|-----------
 wallet | id or wallet | true | a wallet or a wallet id
-amount | float | true |  
+amount | float | true |
 commission | float | false |
 autoCommission | bool | true |
 
@@ -343,7 +343,7 @@ arg|type|required|description
 wallet | id or wallet | true | a wallet or a wallet id
 holder | string | true | iban holder
 bic | string | false | not mandatory if its a french iban
-iban | string | true |  
+iban | string | true |
 dom1 | string | false |
 dom2 | string | false |
 comment | string | false |
@@ -370,7 +370,7 @@ toWallet | id or wallet | true | a wallet or a wallet id
 amount | float | true |
 message | string | false |
 scheduleDate | date | false |
-privateData | string | false | additional data  
+privateData | string | false | additional data
 
 ### `lemonway.Transaction.get(ip, id, opts) -> Promise<transaction>`
 Get a transaction by id
@@ -476,17 +476,17 @@ opts.walletUa | string | false | Client user agent
   * documents -> `[Document]`
   * ibans -> `[IBAN]`
   * sddMandates -> `[SDDMandate]`
-  * update -> (`opts`) -> `Promise<Wallet>`  
-  * updateStatus -> (`opts`) -> `Promise<Wallet>`  
-  * moneyIn -> (`opts`) -> `Promise<Transaction>`  
-  * moneyIn3DInit -> (`opts`) -> `Promise<Transaction>`  
-  * registerCard -> (`opts`) -> `Promise<Card>`  
-  * unregisterCard -> (`card`) -> `Promise<Card>`  
-  * moneyInWithCardId -> (`card`, `opts`) -> `Promise<Transaction>`  
-  * registerIBAN -> (`opts`) -> `Promise<IBAN>`  
-  * registerSDDMandate -> (`opts`) -> `Promise<mandate>`  
-  * moneyInSDDInit -> (`mandate`, `opts`) -> `Promise<transaction>`  
-  * moneyInChequeInit -> (`opts`) -> `Promise<transaction>`  
+  * update -> (`opts`) -> `Promise<Wallet>`
+  * updateStatus -> (`opts`) -> `Promise<Wallet>`
+  * moneyIn -> (`opts`) -> `Promise<Transaction>`
+  * moneyIn3DInit -> (`opts`) -> `Promise<Transaction>`
+  * registerCard -> (`opts`) -> `Promise<Card>`
+  * unregisterCard -> (`card`) -> `Promise<Card>`
+  * moneyInWithCardId -> (`card`, `opts`) -> `Promise<Transaction>`
+  * registerIBAN -> (`opts`) -> `Promise<IBAN>`
+  * registerSDDMandate -> (`opts`) -> `Promise<mandate>`
+  * moneyInSDDInit -> (`mandate`, `opts`) -> `Promise<transaction>`
+  * moneyInChequeInit -> (`opts`) -> `Promise<transaction>`
   * moneyOut -> (`iban`, `opts`) -> `Promise<transaction>`
   * sendPayment -> (`toWallet`, `opts`) -> `Promise<transaction>`
   * createVCC -> (`opts`) -> `Promise<{transaction, vcc}>`
