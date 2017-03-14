@@ -24,17 +24,17 @@
   },
   "homepage": "https://github.com/Lendix/lemonway#readme",
   "dependencies": {
-    "bluebird": "3.3.5",
-    "credit-card-type": "4.0.2",
+    "bluebird": "^3.5.0",
+    "credit-card-type": "^5.0.1",
     "joi": "8.0.5",
-    "lodash": "4.11.2",
-    "moment": "2.13.0",
+    "lodash": "^4.17.4",
+    "moment": "^2.17.1",
     "soap": "0.14.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "chance": "^1.0.2",
-    "mocha": "^2.4.5",
+    "chance": "^1.0.6",
+    "mocha": "^3.2.0",
     "open": "0.0.5"
   }
 }
