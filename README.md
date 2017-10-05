@@ -13,7 +13,7 @@ lemonway.Wallet.create(ip, {
   email: client.mail,
   firstName: client.firstName,
   lastName: client.lastName,
-  birthDate: client.birthDate
+  birthdate: client.birthdate
 }).then(function (wallet) {
   return wallet.moneyIn(ip, {
     amount: amount,
@@ -107,7 +107,7 @@ opts.city | string | false | client city of residence |
 opts.country | string | false | client country of residence |
 opts.phoneNumber | string | false |
 opts.mobileNumber | string | false |
-opts.birthDate | date | false |
+opts.birthdate | string | false | format DD/MM/YYYY
 opts.isCompany | bool | false |
 opts.companyName | string | false |
 opts.companyWebsite | string | false |
@@ -117,7 +117,7 @@ opts.isDebtor | string | false |
 opts.nationality | string | false |
 opts.birthCity | string | false |
 opts.birthCountry | string | false |
-opts.payerOrBenificiary | bool | false |
+opts.payerOrBeneficiary | bool | false |
 opts.isOneTimeCustomer | bool | false |
 
 ### `lemonway.Wallet.update(ip, wallet, opts) -> Promise<wallet>`
@@ -137,7 +137,7 @@ opts.city | string | false | client city of residence |
 opts.country | string | false | client country of residence |
 opts.phoneNumber | string | false |
 opts.mobileNumber | string | false |
-opts.birthDate | date | false |
+opts.birthdate | string | false | format DD/MM/YYYY
 opts.isCompany | bool | false |
 opts.companyName | string | false |
 opts.companyWebsite | string | false |
