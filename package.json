@@ -28,7 +28,7 @@
     "credit-card-type": "4.0.2",
     "joi": "8.0.5",
     "lodash": "4.11.2",
-    "moment": "2.13.0",
+    "moment": "2.19.3",
     "soap": "0.14.0"
   },
   "devDependencies": {
