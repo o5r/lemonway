@@ -36,7 +36,7 @@ describe('money in 3D', function () {
       return new Promise(function (resolve) {
         open(objs.acs.getRedirectUrl());
         console.log('Go to', objs.acs.getRedirectUrl(),'then, press enter to resume');
-        return process.stdin.on('data', function () {
+        return process.stdin.once('data', function () {
           return resolve(objs.transaction.moneyIn3DConfirm(chance.ip()));
         });
       });

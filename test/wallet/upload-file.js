@@ -10,7 +10,7 @@ var chance = new Chance();
 describe('upload file', function () {
   this.timeout(2000000);
 
-  it('upload a file', function (done) {
+  it('upload a file', function () {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
     return lemonway.Wallet.create(chance.ip(), {
       id: chance.word({ syllables: 5 }),
@@ -24,10 +24,6 @@ describe('upload file', function () {
         type: 'RIB',
         filePath: './test/wallet/RIB.png'
       });
-    }).then(function (document) {
-      return done();
-    }).catch(done);
-
+    });
   });
-
 });
