@@ -23,7 +23,7 @@ describe('money out', function () {
         amount: 200.00,
         cardNumber: '5017670000006700',
         cardCrypto: '666',
-        cardDate: '10/2016',
+        cardDate: '10/2020',
         autoCommission: true
       }).return(wallet);
     }).then(function (wallet) {
