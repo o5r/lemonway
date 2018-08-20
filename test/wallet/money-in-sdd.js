@@ -40,7 +40,7 @@ describe('money in sdd', function () {
           open(signMandate.redirectUrl);
           console.log('Go to', signMandate.redirectUrl,'then, press enter to resume');
           return new Promise(function (resolve) {
-            return process.stdin.on('data', function () {
+            return process.stdin.once('data', function () {
               return resolve(wallet.moneyInSDDInit(chance.ip(), mandate, {
                 amount: 100.0,
                 autoCommission: true
