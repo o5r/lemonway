@@ -4,6 +4,7 @@ describe('wallet', function () {
   require('./register');
   require('./money-in');
   require('./money-in-web');
+  require('./money-in-ideal');
   require('./money-in-3D');
   require('./upload-file');
   require('./money-out');

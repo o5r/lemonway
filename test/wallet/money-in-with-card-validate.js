@@ -22,7 +22,7 @@ describe('money in with card validate', function () {
       return wallet.registerCard(chance.ip(), {
         cardNumber: '5017670000001800',
         cardCrypto: '666',
-        cardDate: '09/2016'
+        cardDate: '09/2020'
       }).then(function (card) {
         return wallet.moneyInWithCard(chance.ip(), card, {
           amount: 10.0,

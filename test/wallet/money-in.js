@@ -23,7 +23,7 @@ describe('money in', function () {
         amount: 10.00,
         cardNumber: '5017670000006700',
         cardCrypto: '666',
-        cardDate: '10/2016',
+        cardDate: '10/2020',
         autoCommission: true
       })
     }).then(function (transaction) {

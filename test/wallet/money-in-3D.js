@@ -26,7 +26,7 @@ describe('money in 3D', function () {
         autoCommission: true,
         cardNumber: '5017670000001800',
         cardCrypto: '666',
-        cardDate: '10/2016',
+        cardDate: '10/2020',
         token: chance.word({ syllables: 5 }),
         returnUrl: 'http://localhost:9999' //chance.url()
       });
@@ -36,7 +36,7 @@ describe('money in 3D', function () {
       return new Promise(function (resolve) {
         open(objs.acs.getRedirectUrl());
         console.log('Go to', objs.acs.getRedirectUrl(),'then, press enter to resume');
-        return process.stdin.on('data', function () {
+        return process.stdin.once('data', function () {
           return resolve(objs.transaction.moneyIn3DConfirm(chance.ip()));
         });
       });
