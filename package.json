@@ -1,6 +1,6 @@
 {
   "name": "lemonway",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Lemonway non-official SDK",
   "main": "index.js",
   "scripts": {
