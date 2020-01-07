@@ -11,7 +11,7 @@ describe('upload file', function () {
   this.timeout(2000000);
 
   it('upload a file', function () {
-    var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
+    const lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
     return lemonway.Wallet.create(chance.ip(), {
       id: chance.word({ syllables: 5 }),
       email: chance.email(),
