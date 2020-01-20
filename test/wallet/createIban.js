@@ -31,6 +31,10 @@ describe.only('register iban', function () {
     });
 
     expect(lemonwayIban.id).to.not.be.undefined;
+
+    const infos = await lemonway.Wallet.getWalletDetails(chance.ip(), createdWallet);
+    console.log(infos.wallet.ibans);
+    expect(infos.wallet.ibans[0].holder).to.equal('LEMON WAY');
   });
 
 });
