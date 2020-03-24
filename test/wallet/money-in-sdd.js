@@ -4,6 +4,7 @@ var open = require('open');
 var expect = require('chai').expect;
 var Promise = require('bluebird');
 var Chance = require('chance');
+var moment = require('moment');
 
 var Lemonway = require('../../');
 
@@ -29,10 +30,10 @@ describe('money in sdd', function () {
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
-      birthDate: new Date(),
+      birthdate: moment().format('DD/MM/YYYY'),
       country: 'FRA',
       nationality: 'FRA',
-      payerOfBeneficiary: '1',
+      payerOrBeneficiary: true,
       isCompany: false
     }).then(function (wallet) {
       return wallet.updateWalletStatus(chance.ip(), {
@@ -65,7 +66,7 @@ describe('money in sdd', function () {
         });
       });
     }).then(function (transaction) {
-      transaction = transation.id;
+      transaction = transaction.id;
 
       return done();
     }).catch((err) => {
@@ -75,12 +76,15 @@ describe('money in sdd', function () {
   });
 
   it('cancel credit a wallet', function (done) {
-    return lemonway.Wallet.cancelMoneyIn(chance.ip(), id, transaction)
+    lemonway.Wallet.getWalletTransHistory(chance.ip(), id)
+      .get(0)
+      .then((sdd) => lemonway.Wallet.cancelMoneyIn(chance.ip(), id, sdd.id))
       .then(function (transaction) {
+        expect(transaction.status).to.eql('6');
 
-        return done();
-
-      }).catch((err) => {
+        done();
+      })
+      .catch((err) => {
         done(err);
       });
     });
