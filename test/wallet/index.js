@@ -1,6 +1,7 @@
 'use strict';
 
 describe('wallet', function () {
+  require('./get-wallet-details-batch');
   require('./register');
   require('./money-in');
   require('./money-in-web');
