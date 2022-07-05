@@ -13,8 +13,9 @@ describe('getWalletDetailsBatch', function () {
 
   it('should get a batch of wallet details', function (done) {
     const lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT, process.env.WK_URL, { proxy: 'https://proxy.october.eu/lemonway/staging', namespaceArrayElements: false});
+    const prefix = chance.integer({ min: 10, max: 99 });
     const walletIds = _.range(5).map(() => ({
-      wallet: `${chance.integer({min: 200, max: 2000 })}`,
+      wallet: `${prefix}${chance.integer({min: 100, max: 999 })}`,
       email: chance.email(),
     }));
     const ip = chance.ip();
