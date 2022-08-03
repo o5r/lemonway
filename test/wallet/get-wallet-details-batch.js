@@ -15,7 +15,7 @@ describe('getWalletDetailsBatch', function () {
     const lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT, process.env.WK_URL, { proxy: 'https://proxy.october.eu/lemonway/staging', namespaceArrayElements: false});
     const prefix = chance.integer({ min: 10, max: 99 });
     const walletIds = _.range(5).map(() => ({
-      wallet: `${prefix}${chance.integer({min: 100, max: 999 })}`,
+      wallet: `${prefix}${chance.integer({ min: 100, max: 999 })}`,
       email: chance.email(),
     }));
     const ip = chance.ip();
@@ -54,7 +54,7 @@ describe('getWalletDetailsBatch', function () {
     const lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT, process.env.WK_URL, { proxy: 'https://proxy.october.eu/lemonway/staging', namespaceArrayElements: false});
     const prefix = chance.integer({ min: 10, max: 99 });
     const unknownWalletIds = _.range(5).map(() => ({
-      wallet: `${prefix}${chance.integer({min: 100, max: 999 })}`,
+      wallet: `${prefix}${chance.integer({ min: 100, max: 999 })}`,
       email: chance.email(),
     }));
     const ip = chance.ip();
@@ -73,11 +73,11 @@ describe('getWalletDetailsBatch', function () {
     const lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT, process.env.WK_URL, { proxy: 'https://proxy.october.eu/lemonway/staging', namespaceArrayElements: false});
     const prefix = chance.integer({ min: 10, max: 99 });
     const walletIds = _.range(2).map(() => ({
-      wallet: `${prefix}${chance.integer({min: 100, max: 999 })}`,
+      wallet: `${prefix}${chance.integer({ min: 100, max: 999 })}`,
       email: chance.email(),
     }));
     const unknownWalletIds = _.range(2).map(() => ({
-      wallet: `${prefix}${chance.integer({min: 100, max: 999 })}`,
+      wallet: `${prefix}${chance.integer({ min: 100, max: 999 })}`,
       email: chance.email(),
     }));
     const ip = chance.ip();
