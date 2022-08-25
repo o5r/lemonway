@@ -28,7 +28,7 @@
     "credit-card-type": "7.0.0",
     "joi": "13.6.0",
     "joi-date-extensions": "1.2.0",
-    "lodash": "4.17.13",
+    "lodash": "4.17.21",
     "moment": "2.22.2",
     "soap": "0.25.0"
   },
