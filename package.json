@@ -30,7 +30,7 @@
     "joi-date-extensions": "1.2.0",
     "lodash": "4.17.21",
     "moment": "2.22.2",
-    "soap": "0.25.0"
+    "soap": "0.45.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
