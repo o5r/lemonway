@@ -7,26 +7,36 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('register iban', function () {
+describe.only('register iban', function () {
   this.timeout(2000000);
 
-  it('register an iban', function (done) {
+  it('registers an iban with authorized chars in holder field', function (done) {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
-    lemonway.Wallet.create(chance.ip(), {
-      id: chance.word({ syllables: 5 }),
-      email: chance.email(),
-      firstName: chance.first(),
-      lastName: chance.last(),
-      birthDate: new Date()
-    }).then(function (wallet) {
-      return wallet.registerIBAN(chance.ip(), {
-        holder: chance.first() + " " + chance.last(),
+    lemonway.Wallet.get(chance.ip(), {
+      id: '106',
+      email: 'jean.dupont106@mail.com',
+    }).then(function (response) {
+      return response.wallet.registerIBAN(chance.ip(), {
+        holder: 'alphanumeric 123 and - only',
         iban: 'FR1420041010050500013M02606'
       });
     }).then(function (iban) {
       return done();
     }).catch(done);
-
   });
 
+  it('registers an iban with unauthorized chars in holder changed in spaces', function (done) {
+    var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
+    lemonway.Wallet.get(chance.ip(), {
+      id: '106',
+      email: 'jean.dupont106@mail.com',
+    }).then(function (response) {
+      return response.wallet.registerIBAN(chance.ip(), {
+        holder: 'unauthorized chars like _ and &.',
+        iban: 'FR1420041010050500013M02606'
+      });
+    }).then(function (iban) {
+      return done();
+    }).catch(done);
+  });
 });
