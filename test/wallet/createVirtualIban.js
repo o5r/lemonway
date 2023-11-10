@@ -30,10 +30,11 @@ describe('createVirtualIban', function () {
       country: 'FR'
     });
 
-    expect(lemonwayIban.id).to.not.be.undefined;
+    expect(lemonwayIban).to.have.keys(['id', 'iban', 'bic', 'holder', 'domiciliation', 'status', 'maxAvailableIbanPerWalletLeft', 'maxAvailableIbanInTotalLeft']);
 
-    const infos = await lemonway.Wallet.getWalletDetails(chance.ip(), createdWallet);
-    expect(infos.wallet.ibans[0].holder).to.equal('LEMONWAY');
+    const updatedWallet = await lemonway.Wallet.getWalletDetails(chance.ip(), createdWallet);
+    expect(updatedWallet.wallet.ibans.length).to.eql(1);
+    expect(updatedWallet.wallet.ibans[0].iban).to.eql(lemonwayIban.iban);
   });
 
 });
