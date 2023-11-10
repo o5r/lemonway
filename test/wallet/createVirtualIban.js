@@ -6,10 +6,10 @@ const Lemonway = require('../../');
 
 const chance = new Chance();
 
-describe.only('register iban', function () {
+describe('createVirtualIban', function () {
   this.timeout(2000000);
 
-  it('should create an iban',async() => {
+  it('should create a virtual iban',async() => {
     var lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
     const walletOpts = {
       id: chance.word({ syllables: 5 }),
@@ -25,7 +25,7 @@ describe.only('register iban', function () {
 
     const createdWallet = await lemonway.Wallet.create(chance.ip(), walletOpts);
 
-    const lemonwayIban = await createdWallet.createIBAN(chance.ip(), {
+    const lemonwayIban = await createdWallet.createVirtualIBAN(chance.ip(), {
       wallet: createdWallet.id,
       country: 'FR'
     });
@@ -33,8 +33,7 @@ describe.only('register iban', function () {
     expect(lemonwayIban.id).to.not.be.undefined;
 
     const infos = await lemonway.Wallet.getWalletDetails(chance.ip(), createdWallet);
-    console.log(infos.wallet.ibans);
-    expect(infos.wallet.ibans[0].holder).to.equal('LEMON WAY');
+    expect(infos.wallet.ibans[0].holder).to.equal('LEMONWAY');
   });
 
 });
