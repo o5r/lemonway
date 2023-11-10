@@ -33,7 +33,8 @@
     "soap": "0.25.0"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.3.0",
+    "chai-as-promised": "^7.1.1",
     "chance": "^1.0.16",
     "mocha": "^5.2.0",
     "open": "0.0.5"
