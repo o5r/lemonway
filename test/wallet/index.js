@@ -21,4 +21,5 @@ describe('wallet', function () {
   require('./unregister-card');
   require('./register-card');
   require('./money-in-3D-authenticate');
+  require('./createVirtualIban');
 });

@@ -1,5 +1,9 @@
 'use strict';
 
+const chai = require('chai')
+
+chai.use(require('chai-as-promised'));
+
 if (!process.env.LOGIN || !process.env.PASS || !process.env.ENDPOINT || !process.env.PHONE || !process.env.WK_URL) {
   console.error('***')
   console.error(' Set `LOGIN`, `PASS`, `PHONE`, `WK_URL` & `ENDPOINT` env for testing');
