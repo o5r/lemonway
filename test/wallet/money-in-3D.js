@@ -19,7 +19,11 @@ describe('money in 3D', function () {
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
-      birthDate: new Date()
+      birthdate: chance.string(),
+      country: 'FRA',
+      nationality: 'FRA',
+      payerOrBeneficiary: true,
+      isCompany: false,
     }).then(function (wallet) {
       return wallet.moneyIn3DInit(chance.ip(), {
         amount: 10.00,
