@@ -13,7 +13,7 @@ describe('createVirtualIban', function () {
   let walletOptions;
   let wallet;
 
-  before(async() => {
+  beforeEach(async() => {
     lemonway = new Lemonway(process.env.LOGIN, process.env.PASS, process.env.ENDPOINT);
     walletOptions = {
       id: chance.word({ syllables: 5 }),
@@ -58,9 +58,9 @@ describe('createVirtualIban', function () {
   });
 
   it('should fail if wallet id not pass', async() => {
-    await expect(wallet.createVirtualIBAN(chance.ip(), {
+    await expect(lemonway.Wallet.createVirtualIBAN(chance.ip(), {
       country: 'FR',
-    })).to.eventually.be.rejectedWith('child "wallet" fails because ["wallet" is required]');
+    })).to.eventually.be.rejectedWith('child "wallet" fails because ["wallet" must be a string]');
   });
 
   it('should fail if country is less than 1 char', async() => {

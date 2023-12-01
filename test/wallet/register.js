@@ -18,7 +18,12 @@ describe('register', function () {
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
-      birthDate: new Date()
+      birthDate: new Date(),
+      country: 'FRA',
+      nationality: 'FRA',
+      payerOrBeneficiary: true,
+      isCompany: false,
+      birthdate: '01/01/1970',
     })
       .then(function (wallet) {
         expect(wallet.id).to.equal(id);

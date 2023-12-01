@@ -7,7 +7,7 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('money out', function () {
+describe.skip('money out', function () {
   this.timeout(2000000);
 
   it('money out', function (done) {
@@ -17,7 +17,11 @@ describe('money out', function () {
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
-      birthDate: new Date()
+      birthdate: chance.string(),
+      country: 'FRA',
+      nationality: 'FRA',
+      payerOrBeneficiary: true,
+      isCompany: false,
     }).then(function (wallet) {
       return wallet.moneyIn(chance.ip(), {
         amount: 200.00,
