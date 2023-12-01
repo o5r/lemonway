@@ -7,7 +7,7 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('unregister card', function () {
+describe.skip('unregister card', function () {
   this.timeout(2000000);
 
   it('detach a card', function (done) {

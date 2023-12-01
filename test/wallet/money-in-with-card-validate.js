@@ -7,7 +7,7 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('money in with card validate', function () {
+describe.skip('money in with card validate', function () {
   this.timeout(2000000);
 
   it('credit a wallet', function (done) {

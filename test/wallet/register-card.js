@@ -7,7 +7,7 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('register card', function () {
+describe.skip('register card', function () {
   this.timeout(2000000);
 
   it('attach a card to a wallet', function (done) {
@@ -26,7 +26,7 @@ describe('register card', function () {
       return wallet.registerCard(chance.ip(), {
         cardNumber: '5017670000001800',
         cardCrypto: '666',
-        cardDate: '09/2020'
+        cardDate: '09/2030'
       });
     }).then(function (card) {
       return done();

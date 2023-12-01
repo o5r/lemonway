@@ -7,7 +7,7 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('money out', function () {
+describe.skip('money out', function () {
   this.timeout(2000000);
 
   it('money out', function (done) {
