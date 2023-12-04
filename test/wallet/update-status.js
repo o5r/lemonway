@@ -18,7 +18,11 @@ describe('update wallet status', function () {
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
-      birthDate: new Date()
+      birthdate: chance.string(),
+      country: 'FRA',
+      nationality: 'FRA',
+      payerOrBeneficiary: true,
+      isCompany: false,
     }).then(function (wallet) {
       return wallet.updateWalletStatus(chance.ip(), {
         status: 'KYC_2'

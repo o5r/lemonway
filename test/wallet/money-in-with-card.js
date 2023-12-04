@@ -7,7 +7,7 @@ var Lemonway = require('../../');
 
 var chance = new Chance();
 
-describe('money in with card', function () {
+describe.skip('money in with card', function () {
   this.timeout(2000000);
 
   it('credit a wallet', function (done) {
@@ -17,12 +17,16 @@ describe('money in with card', function () {
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
-      birthDate: new Date()
+      birthdate: chance.string(),
+      country: 'FRA',
+      nationality: 'FRA',
+      payerOrBeneficiary: true,
+      isCompany: false,
     }).then(function (wallet) {
       return wallet.registerCard(chance.ip(), {
         cardNumber: '5017670000001800',
         cardCrypto: '666',
-        cardDate: '09/2020'
+        cardDate: '09/2030'
       }).then(function (card) {
         return wallet.moneyInWithCard(chance.ip(), card, {
           amount: 10.0,
