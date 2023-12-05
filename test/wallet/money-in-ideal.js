@@ -17,7 +17,11 @@ describe('money in ideal', function() {
       email: chance.email(),
       firstName: chance.first(),
       lastName: chance.last(),
-      birthDate: new Date()
+      birthdate: chance.string(),
+      country: 'FRA',
+      nationality: 'FRA',
+      payerOrBeneficiary: true,
+      isCompany: false,
     });
 
     const moneyInIdeal = await wallet.moneyInIDealInit(chance.ip(), {
