@@ -24,10 +24,10 @@
   },
   "homepage": "https://github.com/Lendix/lemonway#readme",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "@hapi/joi-date": "^2.0.1",
     "bluebird": "3.5.1",
     "credit-card-type": "7.0.0",
-    "joi": "13.6.0",
-    "joi-date-extensions": "1.2.0",
     "lodash": "4.17.21",
     "moment": "2.29.4",
     "soap": "1.0.0"
