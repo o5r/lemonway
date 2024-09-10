@@ -545,6 +545,7 @@ opts.walletUa | string | false | Client user agent
   * amazonGiftCode -> `string|undefined`
   * message -> `string|undefined`
   * status -> `string|undefined`
+  * intStatus -> `string|undefined`
   * IBANUsed -> `string|undefined`
   * lemonwayMessage -> `string|undefined`
   * bankReference -> `string|undefined`
