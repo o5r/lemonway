@@ -30,7 +30,7 @@
     "joi": "^17.13.1",
     "lodash": "4.17.21",
     "moment": "2.29.4",
-    "soap": "^1.1.10"
+    "soap": "1.1.10"
   },
   "devDependencies": {
     "chai": "^4.3.0",
